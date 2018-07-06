@@ -4,11 +4,11 @@ self.addEventListener('install', event=>{
     event.waitUntil(
       caches.open(staticCacheName).then(cache=>{
         return cache.addAll([
-          './app.js',
+          './index.html',
           './event.js',
           './idbController.js',
           './index.css',
-          './index.html',
+          './app.js',
           'https://use.fontawesome.com/releases/v5.1.0/css/all.css',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
           'https://code.jquery.com/jquery-3.3.1.slim.min.js',
