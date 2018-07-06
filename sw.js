@@ -1,8 +1,8 @@
-const staticCacheName= 'stockJournal-static-v2';
+const staticCacheName2= 'stockJournal-static-v2';
 
 self.addEventListener('install', event=>{
     event.waitUntil(
-      caches.open(staticCacheName).then(cache=>{
+      caches.open(staticCacheName2).then(cache=>{
         return cache.addAll([
           './index.html',
           './event.js',
@@ -21,7 +21,7 @@ self.addEventListener('install', event=>{
 
   
 self.addEventListener('activate', event=>{
-    const cacheWhiteList = [staticCacheName];
+    const cacheWhiteList = [staticCacheName2];
     event.waitUntil(
         caches.keys().then(cacheNames=>{
             return Promise.all(
