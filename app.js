@@ -1,9 +1,9 @@
 // register a service worker
-navigator.serviceWorker.register('./sw.js').then(function(reg) {
+/*navigator.serviceWorker.register('./sw.js').then(function(reg) {
     if (!navigator.serviceWorker.controller) {
         return;
     }
-});
+});*/
 
 //clears the screen before drawing a new table
 const clear=()=>{
@@ -51,7 +51,7 @@ const getData= idx=>{
             document.getElementById('sdisplay').value = 'No entry in Journal';
             return;
         }
-        
+
         printTable(entries)}
     );
 }
