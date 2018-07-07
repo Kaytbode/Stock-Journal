@@ -3,7 +3,7 @@
     "name": "Stock Journal",
     "icons": [
       {
-        "src": "/images/journal.png",
+        "src": "./images/journal.png",
         "type": "image/png",
         "sizes": "192x192"
       }
