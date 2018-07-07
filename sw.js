@@ -8,6 +8,7 @@ self.addEventListener('install', event=>{
           'https://kaytbode.github.io/Stock-Journal/events.js',
           'https://kaytbode.github.io/Stock-Journal/idbController.js',
           'https://kaytbode.github.io/Stock-Journal/index.css',
+          'https://kaytbode.github.io/Stock-Journal/idb.js',
           'https://kaytbode.github.io/Stock-Journal/app.js',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
           'https://code.jquery.com/jquery-3.3.1.slim.min.js',
