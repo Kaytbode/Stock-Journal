@@ -4,7 +4,7 @@ self.addEventListener('install', event=>{
     event.waitUntil(
       caches.open(staticCacheName2).then(cache=>{
         return cache.addAll([
-          '/Stock-Journal/',
+          'https://kaytbode.github.io/Stock-Journal/',
           '/Stock-Journal/events.js',
           '/Stock-Journal/idbController.js',
           '/Stock-Journal/index.css',
