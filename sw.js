@@ -4,11 +4,11 @@ self.addEventListener('install', event=>{
     event.waitUntil(
       caches.open(staticCacheName2).then(cache=>{
         return cache.addAll([
-          './index.html',
-          './event.js',
-          './idbController.js',
-          './index.css',
-          './app.js',
+          '/Stock-Journal/',
+          '/Stock-Journal/event.js',
+          '/Stock-Journal/idbController.js',
+          '/Stock-Journal/index.css',
+          '/Stock-Journal/app.js',
           'https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css',
           'https://code.jquery.com/jquery-3.3.1.slim.min.js',
           'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
