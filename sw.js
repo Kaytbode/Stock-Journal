@@ -5,7 +5,7 @@ self.addEventListener('install', event=>{
       caches.open(staticCacheName2).then(cache=>{
         return cache.addAll([
           '/Stock-Journal/',
-          '/Stock-Journal/event.js',
+          '/Stock-Journal/events.js',
           '/Stock-Journal/idbController.js',
           '/Stock-Journal/index.css',
           '/Stock-Journal/app.js',
@@ -25,7 +25,7 @@ self.addEventListener('activate', event=>{
         caches.keys().then(cacheNames=>{
             return Promise.all(
                 cacheNames.filter(cacheName=>{
-                    return cacheName.startsWith('stockJournal-')&&
+                    return cacheName.startsWith('stockJournal-') &&
                     !cacheWhiteList.includes(cacheName);
                   }).map(cacheName=>caches.delete(cacheName))
             );
