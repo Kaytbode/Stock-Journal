@@ -1,0 +1,15 @@
+{
+    "short_name": "Journal",
+    "name": "Stock Journal",
+    "icons": [
+      {
+        "src": "/images/journal.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ],
+    "start_url": "/?utm_source=homescreen",
+    "background_color": "#eee",
+    "display": "standalone",
+    "theme_color": "#02194b"
+  }
