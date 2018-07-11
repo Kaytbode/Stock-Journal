@@ -168,7 +168,7 @@ getBal.onclick=event=>{
 // Add to homescreen
 
 let deferredPrompt;
-const btnAdd= document.createElement('button');
+const btnAdd= document.getElementById('btnAdd');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -176,7 +176,6 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Stash the event so it can be triggered later.
     deferredPrompt = e;
  //Notify user can add to homescreen
-    document.querySelector('body').appendChild(btnAdd);
     btnAdd.style.display= 'block';
 });
 
