@@ -1,7 +1,7 @@
 # Stock Journal
 A simple **offline** web application that tracks stock inventory. 
 service worker and the cache API were employed to provide the application's offline capabilities.
----
+
 ## Installing
 You will get a prompt to add the application to homescreen through the app's [webpage](https://kaytbode.github.io/Stock-Journal/).
 
