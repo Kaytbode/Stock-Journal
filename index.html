@@ -14,22 +14,22 @@
 <body>
     <header>
         <h1><a href="/">Stock Journal</a></h1>
-        <nav>
+        <nav role="navigation">
             <a href="/">Whole Inventory</a>
             <a href="/">Inventory by Reference</a>
             <a href="/">Inventory by Stock</a>
         </nav>
     </header>
-    <main>
+    <main role="main">
         <section class="stock-balance">
-            <input type="text" placeholder="Input stock reference">
-            <span class="display-balance"></span>
-            <button>Get Stock Balance</button>
+            <input type="text" placeholder="Input stock reference" aria-label="input stock reference">
+            <span id="display-balance" aria-live="assertive"></span>
+            <button aria-controls="display-balance">Get Stock Balance</button>
         </section>
         <section class="draw-table">
             <div class="table-buttons">
-                <button is="add-entry">+</button>
-                <button id="remove-entry">-</button>
+                <button id="add-entry" aria-label="Add stock entry">+</button>
+                <button id="remove-entry" aria-label="Remove stock entry">-</button>
             </div>
             <div class="with-table">
                 <table>
