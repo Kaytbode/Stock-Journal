@@ -35,8 +35,8 @@ nav a {
 
 main {
     display: grid;
-    grid-template-rows: 30% 70%;
-    height: 100vh;
+    grid-template-rows: 210px 70%;
+    min-height: 100vh;
 }
 
 .stock-balance {
