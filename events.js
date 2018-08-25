@@ -166,6 +166,7 @@ getBal.onclick=event=>{
 }
 
 // Add to homescreen
+// https://developers.google.com/web/fundamentals/app-install-banners/
 
 let deferredPrompt;
 const btnAdd= document.getElementById('btnAdd');

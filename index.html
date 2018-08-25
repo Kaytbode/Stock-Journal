@@ -2,64 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#02194b">
     <meta name="description" content="An offline inventory web app">
     <title>Stock Journal: An Inventory</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-    integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oxygen" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" media="screen and (min-width: 600px)" href="css/medium.css">
     <link rel="manifest" href="./manifest.json">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-        <h1 class="navbar-brand"><b>Stock Journal</b></h1>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>     
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" id="inventory">Inventory</a>
-                </li>
-                
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                     Show Inventory by
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" id="ref">Reference</a>
-                    <a class="dropdown-item" href="#" id="stock">Stock</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="#" id="btnAdd">A2HS</a>                    
-                </li>
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" id="sdisplay" type="text" 
-                 aria-label="text" disabled>
-                <input class="form-control mr-sm-2" id="sref" type="text" 
-                placeholder="Input Stock Reference" aria-label="text">
-                <button class="btn my-2 my-sm-0" type="submit" id="sbal">Get stock Balance</button>
-            </form>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-6">
-                <button type="button" class="btn text-center add-entry" data-toggle="modal" data-target="#addModal">
-                    <b>+</b>
-                </button>
+    <header>
+        <h1><a href="/">Stock Journal</a></h1>
+        <nav>
+            <a href="/">Whole Inventory</a>
+            <a href="/">Inventory by Reference</a>
+            <a href="/">Inventory by Stock</a>
+        </nav>
+    </header>
+    <main>
+        <section class="stock-balance">
+            <input type="text" placeholder="Input stock reference">
+            <span class="display-balance"></span>
+            <button>Get Stock Balance</button>
+        </section>
+        <section class="draw-table">
+            <div class="table-buttons">
+                <button is="add-entry">+</button>
+                <button id="remove-entry">-</button>
             </div>
-            <div class="col-6 text-right">
-                <button type="button" class="btn add-entry" data-toggle="modal" data-target="#remModal">
-                    <b>-</b>
-                </button>                            
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <table class="table">
+            <div class="with-table">
+                <table>
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -69,94 +42,14 @@
                             <th scope="col">Out</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    </tbody>
                 </table>
             </div>
-            <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="addModalLabel">Add Stock</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <p id="showError"></p>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="stockItem">Stock Item</label>
-                                    <input type="text" class="form-control" id="stockItem">
-                                </div>
-                                <div class="form-group">
-                                    <label for="stockRef">Stock Reference</label>
-                                    <input type="text" class="form-control" id="stockRef">
-                                </div>
-                                <div class="form-group">
-                                    <label for="stockIn">Stock In</label>
-                                    <input type="text" class="form-control" id="stockIn">
-                                </div>
-                                <div class="form-group">
-                                    <label for="stockOut">Stock Out</label>
-                                    <input type="text" class="form-control" id="stockOut">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn" id="addEntry">Save changes</button>
-                        </div>
-                      </div>
-                    </div>
-            </div>
-            <div class="modal fade" id="remModal" tabindex="-1" role="dialog" aria-labelledby="remModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="remModalLabel">Remove Entry</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
-                            </div>
-                            <p id="showError2"></p>
-                            <div class="modal-body">
-                                <form>
-                                    <div class="form-group">
-                                        <label for="dateEntry">Enter date and time as appeared on inventory</label>
-                                        <input type="text" class="form-control" id="dateEntry">
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn" id="delete">Delete</button>
-                            </div>
-                          </div>
-                        </div>
-                </div>
-        </div>
-    </div>
-    <nav class="navbar navbar-light" id="foota">
-        <p>
-            <a href="https://www.linkedin.com/in/kayode-oluborode-90479921"class="profile"/>
-                <strong>He</strong>
-            </a> 
-            built this app, You will find him elsewhere on 
-            <a href="https://github.com/Kaytbode">
-                github
-            </a>
-        </p>
-    </nav>
+            
+        </section>
+    </main>
     <script src="idb.js"></script>
     <script src="idbController.js"></script>
     <script src="app.js" ></script>
     <script src="events.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" 
-    integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 </body>
 </html>

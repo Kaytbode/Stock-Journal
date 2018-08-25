@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-family: 'Oxygen', sans-serif;
+    margin: 0;
+    padding: 0.5em 0;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em;
+    font-size: 1.1em;
+}
+
+nav a {
+    color: #02194b;
+    font-weight: 500;
+}
+
+main {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    height: 100vh;
+}
+
+.stock-balance {
+    display: grid;
+    grid-template-rows: 70px 70px 70px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.stock-balance button {
+    font-size: 1.3em;
+    padding: 1em;
+    font-weight: 600;
+    border: none;
+    color: green;
+    background-color: inherit;
+    cursor: pointer;
+}
+
+.stock-balance input {
+    font-size: 1.3em;
+    padding: 0.4em;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+span {
+    background-color:#363636;
+    font-size: 1.5em;
+    padding-top: 1em;
+    color: #E0E0E0;
+}
+
+.draw-table {
+    margin: 30px auto;
+    width: 100%;
+}
+
+.table-buttons {
+    display: flex;
+    padding: 0 10px;
+    justify-content: space-between;
+}
+
+.table-buttons button {
+    font-weight: 700;
+    border: 2px solid #02194b;
+    height: 50px;
+    font-size: 1.8em;
+    border-radius: 50%;
+    background-color:#02194b;
+    color: white;
+    padding: 5px 13px 10px;
+    text-align: center;
+}
+
+#remove-entry {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+div.with-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    margin: 30px auto;
+    width: 100%;
+}
+
+thead {
+   background-color: #00FFFF; 
+}
+
+th,
+td {
+    padding: 0.5em;
+}
