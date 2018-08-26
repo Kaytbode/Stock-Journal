@@ -25,12 +25,15 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 0.5em;
-    font-size: 1.1em;
 }
 
-nav a {
+nav button {
     color: #02194b;
     font-weight: 500;
+    border: none;
+    background-color: inherit;
+    font-size: 1.1em;
+    cursor: pointer;
 }
 
 main {
