@@ -1,6 +1,102 @@
-//unleashes the modal and saves to database
-const addEntry = document.getElementById('addEntry');
+// Display the whole inventory
+const wholeInventory = document.querySelector('.whole-inventory');
+wholeInventory.addEventListener('click', App.getAllDatabaseData);
 
+//Display inventory by reference
+const inventoryByRef = document.querySelector('.inventory-ref');
+inventoryByRef.addEventListener('click', function(){App.getDatabaseDataByIdx('stockRef')});
+
+//Display inventory by stock item
+const inventoryByItem = document.querySelector('.inventory-item');
+inventoryByItem.addEventListener('click', function(){App.getDatabaseDataByIdx('stockItem')});
+
+// Display stock balance by reference
+const getBalance = document.querySelector('.get-balance');
+getBalance.addEventListener('click', App.displayStockBalance);
+
+//modal to add entry to inventory
+let focusedElementBeforeModal;
+
+const modalOverlay = document.querySelector('.overlay');
+
+const closeModal = (modal)=> {
+    //hide the modal and overlay
+    modal.style.display = 'none';
+    modalOverlay.style.display = 'none';
+
+    //set focus back to the element that had it before it was opened
+    focusedElementBeforeModal.focus();
+}
+
+const openModal = (modal, closeBtn)=>{
+    //save current focus
+    focusedElementBeforeModal = document.activeElement;
+    // Listen for and trap the keyboard
+    modal.addEventListener('keydown', trapTabKey);
+    //Listen for indicators to close the modal
+    modalOverlay.addEventListener('click', function(){closeModal(modal)});
+    //close button
+   // const closeBtn = modal.querySelector('.close-addModal');
+    closeBtn.addEventListener('click', function(){closeModal(modal)});
+    //find focusable elements and convert nodelist to array
+    let focusableElementsString = 'input:not([disable]), button:not([disabled]), [tabindex="0"]';
+    let focusableElements = [...modal.querySelectorAll(focusableElementsString)];
+    
+    let firstTabStop = focusableElements[0],
+        lastTabStop = focusableElements[focusableElements.length - 1];
+    
+    //show the modal and overlay
+    modal.style.display = 'block';
+    modalOverlay.style.display = 'block';
+
+    //focus first child
+    firstTabStop.focus();
+
+    function trapTabKey(event) {
+        //check for tab key press
+        if(event.key === 'Tab'){
+            //shift + tab
+            if(event.shiftkey){
+                if(document.activeElement === firstTabStop){
+                    event.preventDefault();
+                    lastTabStop.focus();
+                }
+            }
+            //tab
+            else{
+                if(document.activeElement === lastTabStop){
+                    event.preventDefault();
+                    firstTabStop.focus();
+                }
+            }
+        }
+        //escape
+        if(event.key === 'Escape'){
+            closeModal(modal);
+        }
+    }
+}
+
+// Click to display modal and add entry
+const addModal = document.querySelector('.add-modal');
+const addModalToggle = document.getElementById('add-entry');
+const closeBtnAdd = addModal.querySelector('.close-AddModal');
+
+addModalToggle.addEventListener('click', function (){openModal(addModal, closeBtnAdd)});
+
+// click to display modal to remove entry
+const removeModal = document.querySelector('.remove-modal');
+const remModalToggle = document.getElementById('remove-entry');
+const closeBtnRem = removeModal.querySelector('.close-RemModal');
+
+remModalToggle.addEventListener('click', function (){openModal(removeModal, closeBtnRem)});
+
+// Click to add entry to database
+const addEntryBtn = document.querySelector('.A2I');
+addEntryBtn.addEventListener('click', App.AddEntryToDatabase);
+
+//const addEntry = document.getElementById('addEntry');
+/*
 addEntry.onclick =(event)=>{
 
     event.preventDefault();
@@ -164,35 +260,4 @@ getBal.onclick=event=>{
     });
 
 }
-
-// Add to homescreen
-// https://developers.google.com/web/fundamentals/app-install-banners/
-
-let deferredPrompt;
-const btnAdd= document.getElementById('btnAdd');
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
-    e.preventDefault();
-  // Stash the event so it can be triggered later.
-    deferredPrompt = e;
- //Notify user can add to homescreen
-    btnAdd.style.display= 'block';
-});
-
-btnAdd.addEventListener('click', (e) => {
-    // hide our user interface that shows our A2HS button   
-    btnAdd.style.display = 'none';
-    // Show the prompt
-    deferredPrompt.prompt();
-    // Wait for the user to respond to the prompt
-    deferredPrompt.userChoice
-        .then((choiceResult) => {
-            if (choiceResult.outcome === 'accepted') {
-            console.log('User accepted the A2HS prompt');
-            } else {
-            console.log('User dismissed the A2HS prompt');
-            }
-        deferredPrompt = null;
-      });
-});
+*/
