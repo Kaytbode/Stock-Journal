@@ -1,3 +1,6 @@
+//Register service worker
+ App.registerSw();
+
 // Display the whole inventory
 const wholeInventory = document.querySelector('.whole-inventory');
 wholeInventory.addEventListener('click', App.getAllDatabaseData);
@@ -93,7 +96,11 @@ remModalToggle.addEventListener('click', function (){openModal(removeModal, clos
 
 // Click to add entry to database
 const addEntryBtn = document.querySelector('.A2I');
-addEntryBtn.addEventListener('click', App.AddEntryToDatabase);
+addEntryBtn.addEventListener('click', App.addEntryToDatabase);
+
+//Click to remove entry from the database
+const remEntryBtn = document.querySelector('.RFI');
+remEntryBtn.addEventListener('click', App.deleteEntryFromDatabase);
 
 //const addEntry = document.getElementById('addEntry');
 /*

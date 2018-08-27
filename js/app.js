@@ -128,7 +128,7 @@ class App {
     }
 
     //Add entries to database
-    static AddEntryToDatabase() {
+    static addEntryToDatabase() {
         const stockObj = {};
 
         stockObj.date= new Date().toLocaleString();
@@ -149,19 +149,12 @@ class App {
          //Stock must either be going out or coming in
          // Both fields cannot be empty
          if(!stockObj.in && !stockObj.out){
-            showError.textContent= 'Input value of what you are adding or removing';
+            showError.textContent= 'fill stock in or stock out';
             return;
         }
-         //stock input value must be a number
-        const regExp = /^[0-9]+$/;
-
-        if((!regExp.test(stockObj.in)) || (!regExp.test(stockObj.out))){
-            showError.textContent = 'Input a positive value';
-            return;
-        }
-
-        stockObj.in = Number(stockObj.in);
-        stockObj.out = Number(stockObj.out);
+        
+        //If no error, do not show previous errors
+        showError.textContent='';
 
         const dbPromise = App.idbStore();
 
@@ -193,6 +186,57 @@ class App {
                     balanceStore.put(newBalance, stockObj.ref);
                 }); 
             }
+        });
+    }
+
+    //deletes entry from database and update the balance store
+    static deleteEntryFromDatabase() {
+        let balance, refToDelete;
+        const entryToDelete= document.querySelector('.delete-reference').value;
+        const parent= document.querySelector('.remove-modal');
+        const showError = parent.querySelector('.show-error');
+
+        if(!entryToDelete){
+            showError.textContent= 'Input date when entry was made';
+            return;
+        }
+
+        showError.textContent = '';
+        
+        const dbPromise = App.idbStore();
+
+        dbPromise.then(db=>{
+            const tx= db.transaction('stocks').objectStore('stocks');
+            return tx.get(entryToDelete);
+        }).then(stock=>{
+            //ensuring whatever value was added to the balance store
+            //gets deleted
+            balance = stock.in - stock.out;
+            //store the reference to the deleted entry
+            //to be used lated to update the balance store
+            refToDelete= stock.ref;
+
+            dbPromise.then(db=>{
+                //delete entry
+                const tx= db.transaction('stocks', 'readwrite').objectStore('stocks');
+                const balanceStore= db.transaction('stock-balance', 'readwrite').objectStore('stock-balance');
+                tx.delete(entryToDelete);
+                // get the balance store and update record
+                return balanceStore.get(refToDelete);
+            }).then(stockBalance=>{
+                //there are numerous entries to the same reference stock
+                // get the total value and remove the value of deleted entry
+                stockBalance-= balance;
+
+                dbPromise.then(db=>{
+                    //the total value gets the new value
+                    const balanceStore= db.transaction('stock-balance', 'readwrite').objectStore('stock-balance');
+                    balanceStore.put(stockBalance, refToDelete);
+                    return balanceStore.complete;
+                });
+            });
+        }).catch(()=>{
+            showError.textContent= 'Entry Not Found';
         });
     }
 }

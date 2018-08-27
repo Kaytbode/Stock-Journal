@@ -3,7 +3,7 @@
 // https://developers.google.com/web/fundamentals/app-install-banners/
 
 let deferredPrompt;
-const btnAdd= document.getElementById('btnAdd');
+const a2HS= document.querySelector('.a2HS');
 
 window.addEventListener('beforeinstallprompt', (e) => {
   // Prevent Chrome 67 and earlier from automatically showing the prompt
@@ -11,12 +11,12 @@ window.addEventListener('beforeinstallprompt', (e) => {
   // Stash the event so it can be triggered later.
     deferredPrompt = e;
  //Notify user can add to homescreen
-    btnAdd.style.display= 'block';
+    a2HS.style.display= 'block';
 });
 
-btnAdd.addEventListener('click', (e) => {
+a2HS.addEventListener('click', (e) => {
     // hide our user interface that shows our A2HS button   
-    btnAdd.style.display = 'none';
+    a2HS.style.display = 'none';
     // Show the prompt
     deferredPrompt.prompt();
     // Wait for the user to respond to the prompt

@@ -45,3 +45,33 @@ th,
 td {
     font-size: 1.2em;
 }
+
+/* modal and overlay */
+.add-modal,
+.remove-modal {
+    width: 500px;
+}
+
+.add-modal div,
+.remove-modal div {
+    display: flex;
+}
+
+.add-modal label,
+.remove-modal label {
+    font-size: 20px;
+    width: 40%;
+    text-align: left;
+}
+
+.add-modal input,
+.remove-modal input {
+    padding: 1em;
+    width: 60%;
+}
+
+.add-modal button,
+.remove-modal button {
+    padding: 1em;
+    font-size: 18px;
+}

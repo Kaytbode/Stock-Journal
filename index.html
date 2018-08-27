@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#02194b">
-    <meta name="description" content="An offline inventory web app">
+    <meta name="description" content="An offline inventory web application">
     <title>Stock Journal: An Inventory</title>
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Oxygen" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
@@ -13,6 +13,7 @@
 </head>
 <body>
     <header>
+        <button class="a2HS">Add to Homescreen</button>
         <h1><a href="/">Stock Journal</a></h1>
         <nav role="navigation">
             <button class="whole-inventory">Whole Inventory</button>
@@ -31,47 +32,38 @@
                 <button id="add-entry" aria-label="Add stock entry">+</button>
                 <button id="remove-entry" aria-label="Remove stock entry">-</button>
             </div>
-            <div class="add-modal">
+            <div class="add-modal" role="dialog">
                 <h2>Add Entry details</h2>
-                <span class="show-error"></span>
+                <span class="show-error" id="show-error-1" aria-live="assertive"></span>
                 <div>
-                    <label>
-                        Stock Item : 
-                        <input type="text" class="stock-item">
-                    </label>
+                    <label for="stock-item"> Stock Item </label>
+                    <input type="text" class="stock-item" id="stock-item">
                 </div>
                 <div>
-                    <label>
-                        Stock Reference :
-                        <input type="text" class="stock-reference">
-                    </label>    
+                    <label for="stock-reference">Stock Reference</label>
+                    <input type="text" class="stock-reference" id="stock-reference">
                 </div>
                 <div>
-                    <label>
-                        Value of stock in :
-                        <input type="text" class="stock-in">    
-                    </label>
+                    <label for="stock-in">Value of stock in</label>
+                    <input type="number" class="stock-in" id="stock-in">
                 </div>
                 <div>
-                    <label>
-                        Value of stock out :
-                        <input type="text" class="stock-out">
-                    </label>
+                    <label for="stock-out">Value of stock out</label>
+                    <input type="number" class="stock-out" id="stock-out">
                 </div>
                 <button class="close-AddModal">Close</button>
-                <button class="A2I">Add to Inventory</button>
+                <button class="A2I" aria-controls="show-error-1">Add to Inventory</button>
             </div>
             <div class="overlay"></div>
-            <div class="remove-modal">
+            <div class="remove-modal" role="dialog">
                 <h2>Remove Entry details</h2>
+                <span class="show-error" aria-live="assertive" id="show-error-2"></span>
                 <div>
-                    <label>
-                        Stock Reference to delete:
-                        <input type="text" id="delete-reference">
-                    </label>    
+                    <label for="delete-reference">Date and time of stock entry</label>
+                    <input type="text" class="delete-reference" id="delete-reference">
                 </div>
                 <button class="close-RemModal">Close</button>
-                <button class="RFI">Remove from Inventory</button>
+                <button class="RFI" aria-controls="show-error-2">Remove from Inventory</button>
             </div>
             <div class="with-table">
                 <table>
@@ -89,6 +81,7 @@
             </div>    
         </section>
     </main>
+    <script src="sw.js"></script>
     <script src="js/idb.js"></script>
     <script src="js/app.js" ></script>
     <script src="js/events.js"></script>
