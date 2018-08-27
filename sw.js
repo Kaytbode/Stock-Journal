@@ -1,4 +1,4 @@
-const staticCacheName= 'stockJournal-static-v3';
+const staticCacheName= 'stockJournal-static-v4';
 
 self.addEventListener('install', event=>{
     event.waitUntil(
