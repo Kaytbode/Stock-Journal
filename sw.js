@@ -1,16 +1,17 @@
-const staticCacheName= 'stockJournal-static-v4';
+const staticCacheName= 'stockJournal-static-v5';
 
 self.addEventListener('install', event=>{
     event.waitUntil(
       caches.open(staticCacheName).then(cache=>{
         return cache.addAll([
-          'https://kaytbode.github.io/Stock-Journal/',
-          'https://kaytbode.github.io/Stock-Journal/css/medium.css',
-          'https://kaytbode.github.io/Stock-Journal/css/index.css',
-          'https://kaytbode.github.io/Stock-Journal/js/a2hs.js',
-          'https://kaytbode.github.io/Stock-Journal/js/idb.js',
-          'https://kaytbode.github.io/Stock-Journal/js/app.js',
-          'https://kaytbode.github.io/Stock-Journal/js/events.js',
+          '/',
+          '/page404.html',
+          '/css/medium.css',
+          '/css/index.css',
+          '/js/a2hs.js',
+          '/js/idb.js',
+          '/js/app.js',
+          '/js/events.js',
           'https://fonts.googleapis.com/css?family=Josefin+Sans|Oxygen'
         ]);
       })
@@ -36,7 +37,14 @@ self.addEventListener('activate', event=>{
 self.addEventListener('fetch', event=>{
     event.respondWith(
         caches.match(event.request).then(response=> {
-          return response || fetch(event.request);
+            if(response) return response
+            
+            return fetch(event.request).then(response=>{
+                if(response.status === 404){
+                    return caches.match('/page404.html');
+                }
+                return response;
+            });
         })
     );    
 });
